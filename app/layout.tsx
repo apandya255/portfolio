@@ -14,8 +14,21 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Akash Pandya - Portfolio",
-  description: "Computer Science student at University of Maryland specializing in fintech and software development",
+  title: "Akash Pandya | Fintech Software Engineering Portfolio",
+  description:
+    "Fintech-focused software engineering portfolio featuring enterprise trade workflow experience, automation projects, and full-stack development work.",
+  openGraph: {
+    title: "Akash Pandya | Fintech Software Engineering Portfolio",
+    description:
+      "Enterprise workflow engineering, automation, and full-stack project delivery for financial technology applications.",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Akash Pandya | Fintech Software Engineering Portfolio",
+    description:
+      "Enterprise workflow engineering, automation, and full-stack project delivery for financial technology applications.",
+  },
 };
 
 export default function RootLayout({

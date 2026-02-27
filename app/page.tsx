@@ -1,278 +1,345 @@
-import React from 'react';
+'use client';
+
+import { useState } from 'react';
 import Image from 'next/image';
+import ChatWidget from './components/ChatWidget';
+
+const navItems = [
+  { href: '#about', label: 'About' },
+  { href: '#experience', label: 'Experience' },
+  { href: '#projects', label: 'Projects' },
+  { href: '#skills', label: 'Skills' },
+  { href: '#resume', label: 'Resume' },
+  { href: '#contact', label: 'Contact' },
+];
+
+const profileFacts = [
+  { label: 'Degree', value: 'B.S. Computer Science' },
+  { label: 'Minor', value: 'Economics' },
+  { label: 'Graduation', value: 'Class of 2027' },
+  { label: 'GPA', value: '3.6' },
+  { label: 'Location', value: 'Chatham, NJ' },
+  { label: 'Focus', value: 'Financial Technology' },
+];
+
+const experience = [
+  {
+    role: 'Information Technology Intern',
+    org: 'Depository Trust and Clearing Corporation (DTCC)',
+    orgHref: 'https://www.dtcc.com/',
+    meta: 'Jersey City, New Jersey | June 2024 - August 2024, June 2025 - Present',
+    bullets: [
+      "Migrated legacy Funds Only Settlement Web platforms into DTCC's modern Real-Time Trade Matching Web application, supporting net/settlement workflows with over a trillion dollars in daily volume context.",
+      'Developed and integrated 10+ UI components with Angular and backend services in Java, reducing QA bug reports by 15% and raising automated test coverage to 30% through Selenium.',
+      'Collaborated in Agile sprints via Jira to write user stories, plan tasks, and accelerate deployment cycles by 20% through streamlined automation workflows.',
+      'Automated KPI test-result aggregation using SPL and Python, reducing manual reporting by 8+ hours per week and improving performance monitoring cadence.',
+      'Improved Global Trade Repository alert analysis with SPL, cutting reporting turnaround time by 30% with daily automated reports.',
+    ],
+  },
+  {
+    role: 'Spring Research Intern',
+    org: 'OpenData',
+    meta: 'Remote, New Jersey | February 2024 - June 2024',
+    bullets: [
+      'Evaluated free and commercial data sources for an AI-driven data marketplace platform to inform integration strategy.',
+      'Explored machine learning approaches for automated data quality assessment using metadata coverage, freshness, and uniqueness signals.',
+      'Analyzed 10+ data marketplaces across pricing models, product capabilities, and AI features to prioritize roadmap direction.',
+    ],
+  },
+];
+
+const projects = [
+  {
+    title: 'Python Instruction Curriculum',
+    image: '/lotc_image.png',
+    alt: 'Library of the Chathams logo',
+    imageClass: 'h-20 w-auto',
+    summary:
+      'Built and delivered a Python curriculum across six sessions through a public library partnership, helping over 50 students progress into advanced CS coursework.',
+    meta: 'Python, Curriculum Design, Instruction • Feb 2022 - Jun 2023',
+    links: [{ label: 'Partner', href: 'https://chathamlibrary.org/' }],
+  },
+  {
+    title: 'Forensic Tester Application',
+    image: '/dataunlimitedinternational.jpeg',
+    alt: 'Data Unlimited International logo',
+    imageClass: 'h-32 w-full',
+    summary:
+      'Led development of a forensic analysis web application later acquired by Data Unlimited International, with 100+ samples processed via internal comparison workflows.',
+    meta: 'Web Engineering, Data Processing • Jun 2021 - Aug 2021',
+    links: [
+      {
+        label: 'Company',
+        href: 'https://www.linkedin.com/company/data-unlimited-international/about/',
+      },
+    ],
+  },
+  {
+    title: 'PandyaBot',
+    image: '/pandyabot-logo.png',
+    alt: 'Chatbox interface icon',
+    imageClass: 'h-32 w-full',
+    summary:
+      "Designed and shipped PandyaBot for this portfolio with a floating chat UI, portfolio-aware prompting, and a secure server API route for OpenAI responses.",
+    meta: 'Next.js, TypeScript, OpenAI API, UX Engineering • 2026',
+    links: [{ label: 'GitHub', href: 'https://github.com/apandya255' }],
+  },
+];
+
+const skillGroups = [
+  { label: 'Languages', items: ['Python', 'Java', 'TypeScript', 'SQL', 'OCaml', 'Rust', 'R', 'C'] },
+  { label: 'Frameworks', items: ['React', 'Angular'] },
+  { label: 'Testing & Data', items: ['Selenium', 'Splunk (SPL)'] },
+  { label: 'Tools & Workflow', items: ['Jira', 'Toad for Oracle', 'Agile Sprint Planning', 'Cross-Functional Collaboration'] },
+];
+
+const buttonClass =
+  'inline-flex items-center justify-center rounded-full bg-gradient-to-r from-slate-900 to-slate-700 px-6 py-3 text-sm font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-700 focus-visible:ring-offset-2';
 
 export default function Home() {
+  const [mobileOpen, setMobileOpen] = useState(false);
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-100 via-gray-50 to-zinc-100 text-black relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-30 pointer-events-none">
-        <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-gray-200/40 to-transparent rounded-full blur-3xl"></div>
-        <div className="absolute top-1/3 right-0 w-80 h-80 bg-gradient-to-bl from-slate-200/40 to-transparent rounded-full blur-3xl"></div>
-        <div className="absolute bottom-0 left-1/3 w-72 h-72 bg-gradient-to-tr from-zinc-200/40 to-transparent rounded-full blur-3xl"></div>
-      </div>
-      
-      {/* Subtle Grid Pattern */}
-      <div className="absolute inset-0 opacity-5 pointer-events-none" style={{
-        backgroundImage: `radial-gradient(circle at 1px 1px, rgba(0,0,0,0.15) 1px, transparent 0)`,
-        backgroundSize: '20px 20px'
-      }}></div>
-      {/* Header */}
-      <header className="fixed top-0 w-full bg-gradient-to-r from-gray-800 to-gray-600 z-50 shadow-lg">
-        <nav className="max-w-6xl mx-auto px-8 py-4 flex justify-between items-center">
-          <div className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-white animate-gradient cursor-pointer font-[family-name:var(--font-playfair)] tracking-wide">Akash Pandya</div>
-          <div className="flex gap-8">
-            <a href="#about" className="text-white/90 hover:text-white transition-colors relative group">
-              About
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
-            </a>
-            <a href="#experience" className="text-white/90 hover:text-white transition-colors relative group">
-              Experience
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
-            </a>
-            <a href="#projects" className="text-white/90 hover:text-white transition-colors relative group">
-              Projects
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
-            </a>
-            <a href="#resume" className="text-white/90 hover:text-white transition-colors relative group">
-              Resume
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
-            </a>
-            <a href="#contact" className="text-white/90 hover:text-white transition-colors relative group">
-              Contact
-              <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-white transition-all duration-300 group-hover:w-full"></span>
-            </a>
+    <div className="min-h-screen bg-[radial-gradient(circle_at_15%_0%,#e5eef9_0%,transparent_30%),radial-gradient(circle_at_85%_20%,#e8edf4_0%,transparent_28%),linear-gradient(180deg,#f8fafc_0%,#f1f5f9_100%)] text-slate-900">
+      <header className="fixed inset-x-0 top-0 z-50 border-b border-slate-700/70 bg-gradient-to-r from-slate-900 to-slate-700 backdrop-blur-xl">
+        <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-8" aria-label="Main navigation">
+          <a href="#top" className="animate-gradient bg-gradient-to-r from-white via-slate-200 to-white bg-clip-text font-[family-name:var(--font-playfair)] text-2xl font-semibold text-transparent">
+            Akash Pandya
+          </a>
+
+          <button
+            type="button"
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-nav"
+            onClick={() => setMobileOpen((v) => !v)}
+            className="rounded-md border border-slate-400/80 px-3 py-1.5 text-sm text-white md:hidden"
+          >
+            Menu
+          </button>
+
+          <div className="hidden items-center gap-6 md:flex">
+            {navItems.map((item) => (
+              <a key={item.href} href={item.href} className="group relative py-1 text-sm font-medium text-slate-200 transition hover:text-white">
+                {item.label}
+                <span className="absolute -bottom-1 left-0 h-0.5 w-0 bg-white transition-all duration-300 group-hover:w-full" />
+              </a>
+            ))}
           </div>
         </nav>
+
+        <div
+          id="mobile-nav"
+          className={`${mobileOpen ? 'max-h-80 py-3' : 'max-h-0'} overflow-hidden border-t border-slate-600 bg-slate-800 transition-all duration-300 md:hidden`}
+        >
+          <div className="mx-auto flex max-w-7xl flex-col gap-1 px-4 sm:px-8">
+            {navItems.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                onClick={() => setMobileOpen(false)}
+                className="rounded-md px-3 py-2 text-sm font-medium text-slate-200 hover:bg-slate-700 hover:text-white"
+              >
+                {item.label}
+              </a>
+            ))}
+          </div>
+        </div>
       </header>
 
-      {/* Hero and About Section */}
-      <section className="pt-32 pb-20 px-8">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-8">
-          {/* Hero */}
-          <div className="text-center border-2 border-gray-300 bg-white/70 backdrop-blur-sm rounded-2xl p-12 shadow-xl hover:shadow-2xl hover:border-gray-400 transition-all duration-500 transform hover:-translate-y-1">
-            <Image
-              src="/profile_photo.jpeg"
-              alt="Akash Pandya"
-              width={150}
-              height={150}
-              className="rounded-full object-cover mx-auto mb-8 ring-4 ring-gray-200 shadow-lg"
-            />
-            <h1 className="text-4xl font-semibold mb-4 bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">Akash Pandya</h1>
-            <p className="text-lg text-gray-600 mb-2">Computer Science Major | Economics Minor</p>
-            <p className="text-base text-gray-500 mb-1">University of Maryland, College Park • Class of 2027</p>
-            <p className="text-base text-gray-500 mb-2">Cumulative GPA: 3.6</p>
-            <p className="text-base text-gray-500 mb-8">20 Harvard Street, Chatham, New Jersey 07929</p>
-            <div className="flex gap-3 justify-center">
-              <a href="#contact" className="bg-gradient-to-r from-gray-800 to-gray-600 text-white px-5 py-2 rounded-full text-sm hover:shadow-lg transform hover:scale-105 transition-all duration-300">
-                Get In Touch
-              </a>
-              <a href="#projects" className="bg-gradient-to-r from-gray-800 to-gray-600 text-white px-5 py-2 rounded-full text-sm hover:shadow-lg transform hover:scale-105 transition-all duration-300">
-                View Work
-              </a>
-            </div>
-          </div>
-
-          {/* About */}
-          <div id="about" className="text-center border-2 border-gray-300 bg-white/70 backdrop-blur-sm rounded-2xl p-12 shadow-xl hover:shadow-2xl hover:border-gray-400 transition-all duration-500 transform hover:-translate-y-1">
-            <h2 className="text-3xl font-semibold mb-8 bg-gradient-to-r from-gray-900 via-gray-700 to-gray-600 bg-clip-text text-transparent drop-shadow-sm">About Me</h2>
-            <p className="text-gray-700 leading-relaxed mb-8">
-              I'm a Computer Science student at the University of Maryland with a passion for financial technology and building innovative solutions. I'm particularly drawn to the intersection of finance and technology, whether that's experimenting with blockchain protocols, backtesting trading algorithms, or architecting scalable fintech solutions.
+      <main id="top" className="mx-auto max-w-7xl px-4 pb-20 pt-32 sm:px-8 sm:pt-36">
+        <section className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+          <div>
+            <p className="mb-5 inline-flex rounded-full border border-slate-300 bg-white/80 px-4 py-1 text-xs font-semibold uppercase tracking-[0.15em] text-slate-600">
+              Computer Science Student
             </p>
-            
-            <div>
-              <h3 className="text-sm font-semibold text-gray-800 mb-3 uppercase tracking-wide">Technical Skills</h3>
-              <div className="flex flex-wrap gap-2 justify-center mb-6">
-                <span className="px-3 py-1 bg-gray-200 text-gray-700 rounded-full text-xs">Python</span>
-                <span className="px-3 py-1 bg-gray-200 text-gray-700 rounded-full text-xs">Java</span>
-                <span className="px-3 py-1 bg-gray-200 text-gray-700 rounded-full text-xs">TypeScript</span>
-                <span className="px-3 py-1 bg-gray-200 text-gray-700 rounded-full text-xs">React</span>
-                <span className="px-3 py-1 bg-gray-200 text-gray-700 rounded-full text-xs">Angular</span>
-                <span className="px-3 py-1 bg-gray-200 text-gray-700 rounded-full text-xs">SQL</span>
-                <span className="px-3 py-1 bg-gray-200 text-gray-700 rounded-full text-xs">Splunk</span>
-                <span className="px-3 py-1 bg-gray-200 text-gray-700 rounded-full text-xs">Selenium</span>
-              </div>
-            </div>
-            
-            <div>
-              <h3 className="text-sm font-semibold text-gray-800 mb-3 uppercase tracking-wide">Interests</h3>
-              <div className="flex flex-wrap gap-2 justify-center">
-                <span className="px-3 py-1 bg-gray-200 text-gray-700 rounded-full text-xs">Video Games</span>
-                <span className="px-3 py-1 bg-gray-200 text-gray-700 rounded-full text-xs">The Gym</span>
-                <span className="px-3 py-1 bg-gray-200 text-gray-700 rounded-full text-xs">Basketball</span>
-                <span className="px-3 py-1 bg-gray-200 text-gray-700 rounded-full text-xs">Guitar</span>
-                <span className="px-3 py-1 bg-gray-200 text-gray-700 rounded-full text-xs">Cello</span>
-                <span className="px-3 py-1 bg-gray-200 text-gray-700 rounded-full text-xs">Piano</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Experience Section */}
-      <section id="experience" className="py-20 px-8 bg-gradient-to-br from-gray-50/50 to-gray-100/50">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-semibold mb-12 text-center bg-gradient-to-r from-gray-900 via-gray-700 to-gray-600 bg-clip-text text-transparent drop-shadow-sm">Experience</h2>
-          <div className="space-y-8">
-            <div className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg hover:shadow-2xl hover:border-gray-400 transition-all duration-500 border border-gray-200 transform hover:-translate-y-1">
-              <h3 className="text-xl font-semibold mb-2 text-gray-800">Information Technology Intern</h3>
-              <p className="text-gray-600 mb-1 font-serif"><a href="https://www.dtcc.com/" target="_blank" rel="noopener noreferrer" className="hover:text-gray-800 transition-colors">Depository Trust and Clearing Corporation (DTCC)</a></p>
-              <p className="text-sm text-gray-500 mb-4">Jersey City, New Jersey | June 2024 – August 2024, June 2025 – Present</p>
-              
-              <div className="mb-4">
-                <p className="font-medium text-gray-700 mb-2">Summer 2025</p>
-                <ul className="text-gray-700 space-y-1 text-sm">
-                  <li>• Migrated legacy Funds Only Settlement Web platforms into DTCC's modern Real-Time Trade Matching Web application, improving on functionality to aid in the net/settlement of over a trillion dollars of volume a day</li>
-                  <li>• Developed and integrated 10+ UI components with Angular and backend services in Java, reducing QA bug reports by 15% and boosting automated test coverage up to 30% through Selenium</li>
-                  <li>• Collaborated in Agile sprints via Jira, writing user stories, planning tasks, and accelerating deployment cycles by 20% through streamlined automation workflows</li>
-                </ul>
-              </div>
-              
-              <div>
-                <p className="font-medium text-gray-700 mb-2">Summer 2024</p>
-                <ul className="text-gray-700 space-y-1 text-sm">
-                  <li>• Automated aggregation of KPI metric test results using Splunk Programming Language (SPL) and Python, reducing manual reporting effort by 8+ hours per week, and enabling more frequent performance monitoring</li>
-                  <li>• Streamlined Global Trade Repository alert analysis using SPL, improving reporting turnaround time by 30% and delivering automated daily reports for the Alerts Team</li>
-                </ul>
-              </div>
-            </div>
-            
-            <div className="bg-white/80 backdrop-blur-sm p-6 rounded-2xl shadow-lg hover:shadow-2xl hover:border-gray-400 transition-all duration-500 border border-gray-200 transform hover:-translate-y-1">
-              <h3 className="text-xl font-semibold mb-2 text-gray-800">Spring Research Intern</h3>
-              <p className="text-gray-600 mb-1 font-serif">OpenData</p>
-              <p className="text-sm text-gray-500 mb-4">Remote, New Jersey | February 2024 – June 2024</p>
-              <ul className="text-gray-700 space-y-1 text-sm">
-                <li>• Supported research for an AI-driven data marketplace platform by evaluating free and commercial data sources for potential integration into the product</li>
-                <li>• Assisted in the initial exploration of machine learning techniques to automate data quality assessments, focusing on identifying key data characteristics such as metadata coverage, update frequency, and dataset uniqueness</li>
-                <li>• Analyzed 10+ data marketplaces and providers, comparing pricing models, data offerings, and AI capabilities to inform the product roadmap and prioritize 3 features focused on automated data recommendations and user search tools</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Projects Section */}
-      <section id="projects" className="py-20 px-8">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-semibold mb-12 text-center bg-gradient-to-r from-gray-900 via-gray-700 to-gray-600 bg-clip-text text-transparent drop-shadow-sm">Projects</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="border-2 border-gray-200 rounded-2xl p-6 hover:shadow-2xl hover:border-gray-400 transition-all duration-500 bg-white/70 backdrop-blur-sm transform hover:-translate-y-2">
-              <div className="h-32 rounded-xl mb-4 flex items-center justify-center overflow-hidden">
-                <Image
-                  src="/lotc_image.png"
-                  alt="Library of the Chathams"
-                  width={200}
-                  height={128}
-                  className="object-contain"
-                />
-              </div>
-              <h3 className="text-lg font-semibold mb-2 text-gray-800">Python Instruction Curriculum</h3>
-              <p className="text-gray-600 mb-4 text-sm">Developed and delivered comprehensive Python programming curriculum to over 50 students across 6 sessions through Chatham Library Partnership, inspiring many to pursue advanced computer science courses.</p>
-              <div className="flex gap-4 text-sm">
-                <span className="text-gray-500">Feb 2022 - Jun 2023</span>
-              </div>
-            </div>
-
-            <div className="border-2 border-gray-200 rounded-2xl p-6 hover:shadow-2xl hover:border-gray-400 transition-all duration-500 bg-white/70 backdrop-blur-sm transform hover:-translate-y-2">
-              <div className="h-32 rounded-xl mb-4 flex items-center justify-center overflow-hidden">
-                <Image
-                  src="/dataunlimitedinternational.jpeg"
-                  alt="Data Unlimited International"
-                  width={200}
-                  height={128}
-                  className="object-contain"
-                />
-              </div>
-              <h3 className="text-lg font-semibold mb-2 text-gray-800">Forensic Tester Application</h3>
-              <p className="text-gray-600 mb-4 text-sm">Led the development of a forensic analysis web application, which was subsequently acquired by Data Unlimited International. Successfully processed over 100 samples through internal database comparison.</p>
-              <div className="flex gap-4 text-sm">
-                <span className="text-gray-500">Jun 2021 - Aug 2021</span>
-              </div>
-            </div>
-
-            <div className="border-2 border-gray-200 rounded-2xl p-6 hover:shadow-2xl hover:border-gray-400 transition-all duration-500 bg-white/70 backdrop-blur-sm transform hover:-translate-y-2">
-              <div className="h-32 rounded-xl mb-4 flex items-center justify-center overflow-hidden">
-                <Image
-                  src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg"
-                  alt="Java"
-                  width={128}
-                  height={128}
-                  className="object-contain"
-                />
-              </div>
-              <h3 className="text-lg font-semibold mb-2 text-gray-800">Computer Science Submit Server App</h3>
-              <p className="text-gray-600 mb-4 text-sm">Used multithreaded process techniques to advance a personally built submit server. Utilized Java and Eclipse to develop the backend of the submit server and develop functionalities such as project submission, grading, and grade return.</p>
-              <div className="flex gap-4 text-sm">
-                <span className="text-gray-500">Feb 2024 - Present</span>
-              </div>
-            </div>
-
-            {/* <div className="border-2 border-gray-200 rounded-2xl p-6 hover:shadow-2xl hover:border-gray-400 transition-all duration-500 bg-white/70 backdrop-blur-sm transform hover:-translate-y-2">
-              <div className="bg-gradient-to-br from-gray-100 to-gray-200 h-32 rounded-xl mb-4 flex items-center justify-center">
-                <span className="text-gray-600 text-sm font-medium">Coming Soon</span>
-              </div>
-              <h3 className="text-lg font-semibold mb-2 text-gray-800">Future Project</h3>
-              <p className="text-gray-600 mb-4 text-sm">Currently developing new projects in financial technology and blockchain applications. Additional portfolio items will be available soon.</p>
-              <div className="flex gap-4 text-sm">
-                <span className="text-gray-500">In Development</span>
-              </div>
-            </div> */}
-          </div>
-        </div>
-      </section>
-
-      {/* Resume Section */}
-      <section id="resume" className="py-20 px-8 bg-gradient-to-br from-gray-50/50 to-gray-100/50">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-semibold mb-12 text-center bg-gradient-to-r from-gray-900 via-gray-700 to-gray-600 bg-clip-text text-transparent drop-shadow-sm">Resume</h2>
-          <div className="bg-white border border-gray-200 rounded-lg shadow-2xl overflow-hidden">
-            {/* PDF Preview */}
-            <div className="w-full h-96 md:h-screen bg-gray-50">
-              <iframe
-                src="/resume.pdf"
-                width="100%"
-                height="100%"
-                className="border-0"
-              />
-            </div>
-            
-            {/* Download Button */}
-            <div className="p-8 flex flex-col items-center justify-center text-center bg-white border-t border-gray-200">
-              <p className="text-gray-600 mb-6">
-                View the full resume above or download it for offline access.
-              </p>
-              <a href="/resume.pdf" download className="bg-gradient-to-r from-gray-800 to-gray-600 text-white px-8 py-3 rounded-full hover:shadow-xl transform hover:scale-105 transition-all duration-300">
-                Download Resume
+            <blockquote className="mt-2 border-l-4 border-slate-300 pl-6">
+              <h1 className="font-[family-name:var(--font-playfair)] text-4xl leading-[1.2] text-slate-900 sm:text-5xl lg:text-6xl">
+                &ldquo;Waste no more time arguing what a good man should be. Be one.&rdquo;
+              </h1>
+              <p className="mt-4 text-sm uppercase tracking-[0.15em] text-slate-500">Marcus Aurelius</p>
+            </blockquote>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <a href="#projects" className={buttonClass}>
+                Explore Projects
+              </a>
+              <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className={buttonClass}>
+                Open Resume
               </a>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* Contact Section */}
-      <section id="contact" className="py-20 px-8 bg-gradient-to-br from-gray-50/50 to-gray-100/50">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-semibold mb-8 bg-gradient-to-r from-gray-700 to-gray-500 bg-clip-text text-transparent">Get In Contact</h2>
-          <p className="text-lg text-gray-600 mb-12">If you would like to collaborate or reach out, please feel free to contact me.</p>
-          <div className="flex gap-6 justify-center flex-wrap">
-            <a href="mailto:akashpandya1617@gmail.com" target="_blank" rel="noopener noreferrer" className="bg-gradient-to-r from-gray-700 to-gray-600 text-white px-8 py-3 rounded-full hover:shadow-xl transform hover:scale-105 transition-all duration-300">
-              Email Me
+          <aside className="rounded-3xl border border-slate-200 bg-white/95 p-8 shadow-2xl shadow-slate-200/60 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-slate-300/70">
+            <div className="mb-6 flex items-center gap-5 border-b border-slate-200 pb-6">
+              <Image
+                src="/profile_photo.jpeg"
+                alt="Akash Pandya"
+                width={120}
+                height={120}
+                priority
+                sizes="120px"
+                className="rounded-3xl object-cover ring-4 ring-slate-100"
+              />
+              <div>
+                <h2 className="font-[family-name:var(--font-playfair)] text-3xl font-semibold text-slate-900">Akash Pandya</h2>
+                <p className="mt-1 text-sm text-slate-600">CS Major • Economics Minor</p>
+                <p className="text-sm text-slate-600">University of Maryland, College Park</p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
+              {profileFacts.map((item) => (
+                <div key={item.label} className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5">
+                  <p className="text-[11px] uppercase tracking-[0.1em] text-slate-500">{item.label}</p>
+                  <p className="text-sm font-semibold text-slate-900">{item.value}</p>
+                </div>
+              ))}
+            </div>
+
+          </aside>
+        </section>
+
+        <section id="about" className="mt-20 rounded-3xl border border-slate-200 bg-white/90 p-8 shadow-lg shadow-slate-200/50 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-slate-300/60 sm:p-10">
+          <h2 className="font-[family-name:var(--font-playfair)] text-4xl text-slate-900">About Me</h2>
+          <p className="mt-4 max-w-4xl text-base leading-relaxed text-slate-700">
+            I&apos;m drawn to the intersection of software and markets, especially where reliability, speed, and transparency matter. My work spans
+            frontend and backend development, test automation, and data workflows that reduce manual effort and improve operational confidence.
+          </p>
+        </section>
+
+        <section id="experience" className="mt-20">
+          <div className="mb-7 flex items-end justify-between">
+            <h2 className="font-[family-name:var(--font-playfair)] text-4xl text-slate-900">Experience</h2>
+            <p className="hidden text-sm text-slate-500 md:block">Impact-driven internships in infrastructure and data products</p>
+          </div>
+
+          <div className="space-y-6">
+            {experience.map((item) => (
+              <article key={item.role} className="rounded-3xl border border-slate-200 bg-white/90 p-7 shadow-lg shadow-slate-200/40 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-slate-300/60">
+                <h3 className="text-2xl font-semibold text-slate-900">{item.role}</h3>
+                <p className="mt-1 text-sm font-medium text-slate-700">
+                  {item.orgHref ? (
+                    <a href={item.orgHref} target="_blank" rel="noopener noreferrer" className="underline decoration-slate-400 underline-offset-4">
+                      {item.org}
+                    </a>
+                  ) : (
+                    item.org
+                  )}
+                </p>
+                <p className="mt-1 text-sm text-slate-500">{item.meta}</p>
+                <ul className="mt-4 list-disc space-y-2 pl-5 text-sm leading-relaxed text-slate-700">
+                  {item.bullets.map((bullet) => (
+                    <li key={bullet}>{bullet}</li>
+                  ))}
+                </ul>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section id="projects" className="mt-20">
+          <div className="mb-7 flex items-end justify-between gap-3">
+            <h2 className="font-[family-name:var(--font-playfair)] text-4xl text-slate-900">Projects</h2>
+            <a
+              href="https://github.com/apandya255"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden text-sm font-semibold text-slate-600 underline decoration-slate-400 underline-offset-4 md:inline"
+            >
+              View GitHub Profile
             </a>
-            <a href="https://www.linkedin.com/in/akash-pandya-6b15152a6/" target="_blank" rel="noopener noreferrer" className="bg-gradient-to-r from-gray-700 to-gray-600 text-white px-8 py-3 rounded-full hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {projects.map((project) => (
+              <article key={project.title} className="flex h-full flex-col rounded-3xl border border-slate-200 bg-white/90 p-5 shadow-lg shadow-slate-200/40 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-slate-300/60">
+                <div className="mb-4 flex h-40 items-center justify-center rounded-2xl border border-slate-200 bg-slate-50">
+                  <Image
+                    src={project.image}
+                    alt={project.alt}
+                    width={220}
+                    height={140}
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    className={`object-contain ${project.imageClass ?? 'h-20 w-auto'}`}
+                  />
+                </div>
+                <h3 className="text-lg font-semibold text-slate-900">{project.title}</h3>
+                <p className="mt-2 flex-grow text-sm leading-relaxed text-slate-700">{project.summary}</p>
+                <p className="mt-3 text-xs text-slate-500">{project.meta}</p>
+                <div className="mt-3 flex flex-wrap gap-3">
+                  {project.links.map((link) => (
+                    <a key={link.href} href={link.href} target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-slate-700 underline decoration-slate-400 underline-offset-4">
+                      {link.label}
+                    </a>
+                  ))}
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section id="skills" className="mt-20 rounded-3xl border border-slate-200 bg-white/90 p-8 shadow-lg shadow-slate-200/40 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-slate-300/60 sm:p-10">
+          <h2 className="font-[family-name:var(--font-playfair)] text-4xl text-slate-900">Technical Skills</h2>
+          <div className="mt-6 grid gap-4 md:grid-cols-2">
+            {skillGroups.map((group) => (
+              <div key={group.label} className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                <h3 className="text-sm font-semibold uppercase tracking-[0.12em] text-slate-600">{group.label}</h3>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  {group.items.map((item) => (
+                    <span key={item} className="rounded-full border border-slate-300 bg-white px-3 py-1 text-xs font-medium text-slate-700">
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section id="resume" className="mt-20 rounded-3xl border border-slate-300 bg-gradient-to-br from-slate-900 to-slate-800 p-4 shadow-2xl transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-slate-900/40 sm:p-6">
+          <div className="rounded-2xl border border-slate-700 bg-slate-800/80 p-4">
+            <h2 className="font-[family-name:var(--font-playfair)] text-4xl text-white">Resume</h2>
+            <p className="mt-2 text-sm text-slate-300">Preview on desktop, or open/download directly.</p>
+
+            <div className="mt-6 hidden h-[42rem] overflow-hidden rounded-xl border border-slate-700 bg-white md:block">
+              <iframe src="/resume.pdf" title="Akash Pandya resume" width="100%" height="100%" className="border-0" />
+            </div>
+
+            <div className="mt-5 flex flex-wrap gap-3">
+              <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className={buttonClass}>
+                Open in New Tab
+              </a>
+              <a href="/resume.pdf" download className={buttonClass}>
+                Download PDF
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section id="contact" className="mt-20 rounded-3xl border border-slate-200 bg-white/90 p-8 text-center shadow-lg shadow-slate-200/40 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-slate-300/60 sm:p-10">
+          <h2 className="font-[family-name:var(--font-playfair)] text-4xl text-slate-900">Let&apos;s Build</h2>
+          <p className="mx-auto mt-3 max-w-2xl text-slate-700">
+            Open to fintech internships and software engineering opportunities where speed, reliability, and product quality matter.
+          </p>
+
+          <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
+            <a href="mailto:akashpandya1617@gmail.com" className={buttonClass}>
+              Email
+            </a>
+            <a href="https://www.linkedin.com/in/akash-pandya-6b15152a6/" target="_blank" rel="noopener noreferrer" className={buttonClass}>
               LinkedIn
             </a>
-            <a href="https://github.com/apandya255" target="_blank" rel="noopener noreferrer" className="bg-gradient-to-r from-gray-700 to-gray-600 text-white px-8 py-3 rounded-full hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+            <a href="https://github.com/apandya255" target="_blank" rel="noopener noreferrer" className={buttonClass}>
               GitHub
             </a>
           </div>
-        </div>
-      </section>
+        </section>
+      </main>
 
-      {/* Footer */}
-      <footer className="py-8 px-8 bg-gradient-to-r from-gray-800 to-gray-600">
-        <div className="max-w-6xl mx-auto text-center text-white">
-          <p className="text-sm">© 2025 Akash Pandya. All rights reserved.</p>
-        </div>
+      <footer className="mt-20 border-t border-slate-700/70 bg-gradient-to-r from-slate-900 to-slate-700 px-4 py-8 sm:px-8">
+        <div className="mx-auto max-w-7xl text-center text-sm text-slate-200">© 2026 Akash Pandya.</div>
       </footer>
+
+      <ChatWidget />
     </div>
   );
 }
