@@ -16,10 +16,7 @@ const navItems = [
 const profileFacts = [
   { label: 'Degree', value: 'B.S. Computer Science' },
   { label: 'Minor', value: 'Economics' },
-  { label: 'Graduation', value: 'Class of 2027' },
-  { label: 'GPA', value: '3.6' },
-  { label: 'Location', value: 'Chatham, NJ' },
-  { label: 'Focus', value: 'Financial Technology' },
+  { label: 'GPA', value: '3.6 / 4.0' },
 ];
 
 const experience = [
@@ -27,7 +24,7 @@ const experience = [
     role: 'Information Technology Intern',
     org: 'Depository Trust and Clearing Corporation (DTCC)',
     orgHref: 'https://www.dtcc.com/',
-    meta: 'Jersey City, New Jersey | June 2024 - August 2024, June 2025 - Present',
+    meta: 'Jersey City, New Jersey | June 2024 - August 2024, June 2025 - August 2025',
     bullets: [
       "Migrated legacy Funds Only Settlement Web platforms into DTCC's modern Real-Time Trade Matching Web application, supporting net/settlement workflows with over a trillion dollars in daily volume context.",
       'Developed and integrated 10+ UI components with Angular and backend services in Java, reducing QA bug reports by 15% and raising automated test coverage to 30% through Selenium.',
@@ -82,15 +79,25 @@ const projects = [
     summary:
       "Designed and shipped PandyaBot for this portfolio with a floating chat UI, portfolio-aware prompting, and a secure server API route for OpenAI responses.",
     meta: 'Next.js, TypeScript, OpenAI API, UX Engineering • 2026',
-    links: [{ label: 'GitHub', href: 'https://github.com/apandya255' }],
+    links: [{ label: 'GitHub', href: 'https://apandya255.github.io' }],
   },
+  // {
+  //   title: 'Market Analyzer',
+  //   image: '/globe.svg',
+  //   alt: 'Market analyzer icon',
+  //   imageClass: 'h-20 w-20',
+  //   summary:
+  //     'Built a trend-focused market analyzer that ranks investment candidates with a factor model and AI-generated market commentary from user inputs.',
+  //   meta: 'Next.js, TypeScript, Factor Scoring, AI Analysis • 2026',
+  //   links: [{ label: 'Open App', href: '/market-analyzer' }],
+  // },
 ];
 
 const skillGroups = [
   { label: 'Languages', items: ['Python', 'Java', 'TypeScript', 'SQL', 'OCaml', 'Rust', 'R', 'C'] },
-  { label: 'Frameworks', items: ['React', 'Angular'] },
-  { label: 'Testing & Data', items: ['Selenium', 'Splunk (SPL)'] },
-  { label: 'Tools & Workflow', items: ['Jira', 'Toad for Oracle', 'Agile Sprint Planning', 'Cross-Functional Collaboration'] },
+  { label: 'Frameworks & Libraries', items: ['React', 'Angular', 'Next.js'] },
+  { label: 'Testing & Data', items: ['Selenium', 'Splunk (SPL)', 'JUnit'] },
+  { label: 'Tools & Workflow', items: ['Git', 'GitHub', 'Eclipse', 'Jira', 'Toad for Oracle', 'Agile / Scrum'] },
 ];
 
 const buttonClass =
@@ -147,62 +154,88 @@ export default function Home() {
       </header>
 
       <main id="top" className="mx-auto max-w-7xl px-4 pb-20 pt-32 sm:px-8 sm:pt-36">
-        <section className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
-          <div>
-            <p className="mb-5 inline-flex rounded-full border border-slate-300 bg-white/80 px-4 py-1 text-xs font-semibold uppercase tracking-[0.15em] text-slate-600">
-              Computer Science Student
-            </p>
-            <blockquote className="mt-2 border-l-4 border-slate-300 pl-6">
-              <h1 className="font-[family-name:var(--font-playfair)] text-4xl leading-[1.2] text-slate-900 sm:text-5xl lg:text-6xl">
-                &ldquo;Waste no more time arguing what a good man should be. Be one.&rdquo;
-              </h1>
-              <p className="mt-4 text-sm uppercase tracking-[0.15em] text-slate-500">Marcus Aurelius</p>
-            </blockquote>
-            <div className="mt-8 flex flex-wrap gap-3">
-              <a href="#projects" className={buttonClass}>
-                Explore Projects
-              </a>
-              <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className={buttonClass}>
-                Open Resume
-              </a>
-            </div>
-          </div>
+        <section className="relative overflow-hidden rounded-[2rem] border border-slate-200/80 bg-white/75 px-6 py-10 shadow-[0_30px_80px_-40px_rgba(15,23,42,0.35)] backdrop-blur sm:px-10 sm:py-14">
+          <div className="absolute inset-y-0 right-0 hidden w-1/2 bg-[radial-gradient(circle_at_top,#dbeafe_0%,transparent_58%)] lg:block" />
 
-          <aside className="rounded-3xl border border-slate-200 bg-white/95 p-8 shadow-2xl shadow-slate-200/60 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-slate-300/70">
-            <div className="mb-6 flex items-center gap-5 border-b border-slate-200 pb-6">
-              <Image
-                src="/profile_photo.jpeg"
-                alt="Akash Pandya"
-                width={120}
-                height={120}
-                priority
-                sizes="120px"
-                className="rounded-3xl object-cover ring-4 ring-slate-100"
-              />
-              <div>
-                <h2 className="font-[family-name:var(--font-playfair)] text-3xl font-semibold text-slate-900">Akash Pandya</h2>
-                <p className="mt-1 text-sm text-slate-600">CS Major • Economics Minor</p>
-                <p className="text-sm text-slate-600">University of Maryland, College Park</p>
+          <div className="relative grid items-center gap-10 lg:grid-cols-[minmax(0,1.25fr)_minmax(320px,0.75fr)] lg:gap-14">
+            <div className="text-center lg:text-left">
+              <span className="inline-flex items-center gap-2 rounded-full border border-emerald-300 bg-emerald-50 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-emerald-700">
+                <span className="h-2 w-2 rounded-full bg-emerald-500" />
+                Open to full-time software engineering roles starting summer 2027
+              </span>
+
+              <p className="mt-6 text-sm font-semibold uppercase tracking-[0.22em] text-slate-500">
+                Financial technology focused engineer
+              </p>
+
+              <h1 className="mt-4 font-[family-name:var(--font-playfair)] text-5xl font-semibold tracking-tight text-slate-900 sm:text-6xl lg:text-7xl">
+                Akash Pandya
+              </h1>
+
+              <p className="mt-4 max-w-2xl text-base leading-8 text-slate-600 lg:text-lg">
+                Two-time DTCC intern building production software for capital markets infrastructure, with experience across frontend delivery, automation, and data-driven engineering.
+              </p>
+
+              <p className="mt-5 text-sm font-medium tracking-[0.08em] text-slate-500 uppercase">
+                University of Maryland &rsquo;27 • B.S. Computer Science • Economics Minor
+              </p>
+
+              <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:justify-center lg:justify-start">
+                <a href="#projects" className={buttonClass}>
+                  View Projects
+                </a>
+                <a
+                  href="/resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-700 transition duration-300 hover:-translate-y-0.5 hover:border-slate-400 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-2"
+                >
+                  Open Resume
+                </a>
+              </div>
+
+              <div className="mt-8 grid gap-4 sm:grid-cols-3">
+                {profileFacts.map((item) => (
+                  <div key={item.label} className="rounded-2xl border border-slate-200 bg-white/90 px-5 py-5 shadow-sm">
+                    <p className="text-[11px] uppercase tracking-[0.18em] text-slate-400">{item.label}</p>
+                    <p className="mt-2 text-sm font-semibold text-slate-800 sm:text-base">{item.value}</p>
+                  </div>
+                ))}
               </div>
             </div>
 
-            <div className="grid grid-cols-1 gap-2 sm:grid-cols-2">
-              {profileFacts.map((item) => (
-                <div key={item.label} className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2.5">
-                  <p className="text-[11px] uppercase tracking-[0.1em] text-slate-500">{item.label}</p>
-                  <p className="text-sm font-semibold text-slate-900">{item.value}</p>
-                </div>
-              ))}
-            </div>
+            <div className="mx-auto w-full max-w-md">
+              <div className="rounded-[2rem] border border-slate-200 bg-white/95 p-6 shadow-2xl shadow-slate-300/30">
+                <div className="flex flex-col items-center text-center">
+                  <div className="relative">
+                    <div className="absolute inset-0 rounded-full bg-[radial-gradient(circle,#bfdbfe_0%,transparent_68%)] blur-2xl" />
+                    <Image
+                      src="/profile_photo.jpeg"
+                      alt="Akash Pandya"
+                      width={240}
+                      height={240}
+                      priority
+                      sizes="(max-width: 1024px) 220px, 240px"
+                      className="relative mx-auto rounded-full object-cover ring-4 ring-white shadow-2xl"
+                    />
+                  </div>
 
-          </aside>
+                  <div className="mt-6 w-full rounded-2xl bg-slate-50 px-5 py-4 text-left">
+                    <p className="text-xs font-semibold uppercase tracking-[0.14em] text-slate-500">Current Focus</p>
+                    <p className="mt-2 text-sm leading-6 text-slate-700">
+                      Building reliable software for high-stakes systems, with a strong interest in fintech platforms, workflow automation, and polished user experiences.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
 
         <section id="about" className="mt-20 rounded-3xl border border-slate-200 bg-white/90 p-8 shadow-lg shadow-slate-200/50 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-slate-300/60 sm:p-10">
           <h2 className="font-[family-name:var(--font-playfair)] text-4xl text-slate-900">About Me</h2>
           <p className="mt-4 max-w-4xl text-base leading-relaxed text-slate-700">
-            I&apos;m drawn to the intersection of software and markets, especially where reliability, speed, and transparency matter. My work spans
-            frontend and backend development, test automation, and data workflows that reduce manual effort and improve operational confidence.
+            I&apos;m a CS major with an Economics minor who genuinely cares about how financial systems work — not just how to code around them. I&apos;m drawn to the challenge of introducing emerging technology into an industry where the cost of failure is real. Whether it&apos;s designing cleaner data pipelines, building more testable UIs, or thinking through how AI fits responsibly into capital markets, I want to be the engineer who bridges both worlds.
           </p>
         </section>
 
@@ -267,7 +300,13 @@ export default function Home() {
                 <p className="mt-3 text-xs text-slate-500">{project.meta}</p>
                 <div className="mt-3 flex flex-wrap gap-3">
                   {project.links.map((link) => (
-                    <a key={link.href} href={link.href} target="_blank" rel="noopener noreferrer" className="text-sm font-semibold text-slate-700 underline decoration-slate-400 underline-offset-4">
+                    <a
+                      key={link.href}
+                      href={link.href}
+                      target={link.href.startsWith('http') ? '_blank' : undefined}
+                      rel={link.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                      className="text-sm font-semibold text-slate-700 underline decoration-slate-400 underline-offset-4"
+                    >
                       {link.label}
                     </a>
                   ))}
@@ -295,23 +334,21 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="resume" className="mt-20 rounded-3xl border border-slate-300 bg-gradient-to-br from-slate-900 to-slate-800 p-4 shadow-2xl transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-slate-900/40 sm:p-6">
-          <div className="rounded-2xl border border-slate-700 bg-slate-800/80 p-4">
-            <h2 className="font-[family-name:var(--font-playfair)] text-4xl text-white">Resume</h2>
-            <p className="mt-2 text-sm text-slate-300">Preview on desktop, or open/download directly.</p>
+        <section id="resume" className="mt-20">
+          <h2 className="font-[family-name:var(--font-playfair)] text-4xl text-slate-900 mb-2">Resume</h2>
+          <p className="text-sm text-slate-500 mb-6">Preview below, or open and download directly.</p>
 
-            <div className="mt-6 hidden h-[42rem] overflow-hidden rounded-xl border border-slate-700 bg-white md:block">
-              <iframe src="/resume.pdf" title="Akash Pandya resume" width="100%" height="100%" className="border-0" />
-            </div>
+          <div className="mt-4 hidden h-[42rem] overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-lg md:block">
+            <iframe src="/resume.pdf" title="Akash Pandya resume" width="100%" height="100%" className="border-0" />
+          </div>
 
-            <div className="mt-5 flex flex-wrap gap-3">
-              <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className={buttonClass}>
-                Open in New Tab
-              </a>
-              <a href="/resume.pdf" download className={buttonClass}>
-                Download PDF
-              </a>
-            </div>
+          <div className="mt-5 flex flex-wrap gap-3">
+            <a href="/resume.pdf" target="_blank" rel="noopener noreferrer" className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-slate-900 to-slate-700 px-8 py-3.5 text-sm font-bold text-white shadow-md transition duration-300 hover:-translate-y-0.5 hover:shadow-xl">
+              Open in New Tab
+            </a>
+            <a href="/resume.pdf" download className="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-slate-900 to-slate-700 px-8 py-3.5 text-sm font-bold text-white shadow-md transition duration-300 hover:-translate-y-0.5 hover:shadow-xl">
+              Download PDF
+            </a>
           </div>
         </section>
 
@@ -322,8 +359,11 @@ export default function Home() {
           </p>
 
           <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
-            <a href="mailto:akashpandya1617@gmail.com" className={buttonClass}>
-              Email
+            <a href="mailto:akashpandya1617@gmail.com" target="_blank" rel="noopener noreferrer" className={buttonClass}>
+              Personal Email
+            </a>
+            <a href="mailto:apandya7@terpmail.umd.edu" target="_blank" rel="noopener noreferrer" className={buttonClass}>
+              Student Email
             </a>
             <a href="https://www.linkedin.com/in/akash-pandya-6b15152a6/" target="_blank" rel="noopener noreferrer" className={buttonClass}>
               LinkedIn
