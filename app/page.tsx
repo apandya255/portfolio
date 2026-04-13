@@ -79,18 +79,18 @@ const projects = [
     summary:
       "Designed and shipped PandyaBot for this portfolio with a floating chat UI, portfolio-aware prompting, and a secure server API route for OpenAI responses.",
     meta: 'Next.js, TypeScript, OpenAI API, UX Engineering • 2026',
-    links: [{ label: 'GitHub', href: 'https://apandya255.github.io' }],
+    links: [{ label: 'GitHub', href: 'https://github.com/apandya255/portfolio' }],
   },
-  // {
-  //   title: 'Market Analyzer',
-  //   image: '/globe.svg',
-  //   alt: 'Market analyzer icon',
-  //   imageClass: 'h-20 w-20',
-  //   summary:
-  //     'Built a trend-focused market analyzer that ranks investment candidates with a factor model and AI-generated market commentary from user inputs.',
-  //   meta: 'Next.js, TypeScript, Factor Scoring, AI Analysis • 2026',
-  //   links: [{ label: 'Open App', href: '/market-analyzer' }],
-  // },
+  {
+    title: 'Market Analyzer',
+    image: '/globe.svg',
+    alt: 'Market analyzer icon',
+    imageClass: 'h-20 w-20',
+    summary:
+      'Built a trend-focused market analyzer that ranks investment candidates with a factor model and AI-generated market commentary from user inputs.',
+    meta: 'Next.js, TypeScript, Factor Scoring, AI Analysis • 2026',
+    links: [{ label: 'Open App', href: '/market-analyzer' }],
+  },
 ];
 
 const skillGroups = [
