@@ -165,7 +165,7 @@ export default function Home() {
               </span>
 
               <p className="mt-6 text-sm font-semibold uppercase tracking-[0.22em] text-slate-500">
-                Financial technology focused engineer
+                Skilled Software Developer & Computer Enthusiast
               </p>
 
               <h1 className="mt-4 font-[family-name:var(--font-playfair)] text-5xl font-semibold tracking-tight text-slate-900 sm:text-6xl lg:text-7xl">
@@ -188,7 +188,7 @@ export default function Home() {
                   href="/resume.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-6 py-3 text-sm font-semibold text-slate-700 transition duration-300 hover:-translate-y-0.5 hover:border-slate-400 hover:shadow-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-2"
+                  className={buttonClass}
                 >
                   Open Resume
                 </a>
@@ -242,7 +242,6 @@ export default function Home() {
         <section id="experience" className="mt-20">
           <div className="mb-7 flex items-end justify-between">
             <h2 className="font-[family-name:var(--font-playfair)] text-4xl text-slate-900">Experience</h2>
-            <p className="hidden text-sm text-slate-500 md:block">Impact-driven internships in infrastructure and data products</p>
           </div>
 
           <div className="space-y-6">
@@ -355,7 +354,7 @@ export default function Home() {
         <section id="contact" className="mt-20 rounded-3xl border border-slate-200 bg-white/90 p-8 text-center shadow-lg shadow-slate-200/40 transition-all duration-500 hover:-translate-y-1 hover:shadow-2xl hover:shadow-slate-300/60 sm:p-10">
           <h2 className="font-[family-name:var(--font-playfair)] text-4xl text-slate-900">Let&apos;s Build</h2>
           <p className="mx-auto mt-3 max-w-2xl text-slate-700">
-            Open to fintech internships and software engineering opportunities where speed, reliability, and product quality matter.
+            Open to software engineering roles where speed, reliability, and product quality matter.
           </p>
 
           <div className="mt-7 flex flex-wrap items-center justify-center gap-3">
@@ -376,7 +375,7 @@ export default function Home() {
       </main>
 
       <footer className="mt-20 border-t border-slate-700/70 bg-gradient-to-r from-slate-900 to-slate-700 px-4 py-8 sm:px-8">
-        <div className="mx-auto max-w-7xl text-center text-sm text-slate-200">© 2026 Akash Pandya.</div>
+        <div className="mx-auto max-w-7xl text-center text-sm text-slate-300">© {new Date().getFullYear()} Akash Pandya. All rights reserved.</div>
       </footer>
 
       <ChatWidget />
