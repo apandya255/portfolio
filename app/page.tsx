@@ -16,7 +16,7 @@ const navItems = [
 const profileFacts = [
   { label: 'Degree', value: 'B.S. Computer Science' },
   { label: 'Minor', value: 'Economics' },
-  { label: 'GPA', value: '3.6 / 4.0' },
+  { label: 'GPA', value: '3.5 / 4.0' },
 ];
 
 const experience = [
@@ -24,28 +24,74 @@ const experience = [
     role: 'Information Technology Intern',
     org: 'Depository Trust and Clearing Corporation (DTCC)',
     orgHref: 'https://www.dtcc.com/',
-    meta: 'Jersey City, New Jersey | June 2024 - August 2024, June 2025 - August 2025',
-    bullets: [
-      "Migrated legacy Funds Only Settlement Web platforms into DTCC's modern Real-Time Trade Matching Web application, supporting net/settlement workflows with over a trillion dollars in daily volume context.",
-      'Developed and integrated 10+ UI components with Angular and backend services in Java, reducing QA bug reports by 15% and raising automated test coverage to 30% through Selenium.',
-      'Collaborated in Agile sprints via Jira to write user stories, plan tasks, and accelerate deployment cycles by 20% through streamlined automation workflows.',
-      'Automated KPI test-result aggregation using SPL and Python, reducing manual reporting by 8+ hours per week and improving performance monitoring cadence.',
-      'Improved Global Trade Repository alert analysis with SPL, cutting reporting turnaround time by 30% with daily automated reports.',
-    ],
-  },
-  {
-    role: 'Spring Research Intern',
-    org: 'OpenData',
-    meta: 'Remote, New Jersey | February 2024 - June 2024',
-    bullets: [
-      'Evaluated free and commercial data sources for an AI-driven data marketplace platform to inform integration strategy.',
-      'Explored machine learning approaches for automated data quality assessment using metadata coverage, freshness, and uniqueness signals.',
-      'Analyzed 10+ data marketplaces across pricing models, product capabilities, and AI features to prioritize roadmap direction.',
+    meta: 'Jersey City, New Jersey | June – August 2024, 2025, 2026',
+    sections: [
+      {
+        heading: 'Summer 2026',
+        bullets: [
+          'Remediated 11 SQL injection vulnerabilities across 10 production components and 3 core data services using PostgreSQL and DBeaver, executing 40+ live database tests and resolving 3 additional critical functional regressions.',
+          'Built a production Trade Information Warehouse (TIW) retrieval pipeline, indexing hundreds of settlement documents for vector-based semantic search with typical chatbot responses under 1 minute.',
+        ],
+      },
+      {
+        heading: 'Summer 2025',
+        bullets: [
+          "Supported migration of legacy Funds Only Settlement web components into DTCC's Real-Time Trade Matching application, improving application reliability and maintainability.",
+          'Shipped 8+ Angular UI components and Java/Spring Boot REST APIs while maintaining 90% unit test coverage and resolving Jenkins CI/CD build failures.',
+        ],
+      },
+      {
+        heading: 'Summer 2024',
+        bullets: [
+          'Automated KPI test-result aggregation using SPL, eliminating 2+ hours of manual reporting per week and enabling more frequent performance monitoring.',
+          'Streamlined Global Trade Repository alert analysis using SPL, reducing alert response time by 30% and generating automated daily reports for the Alerts Team.',
+        ],
+      },
     ],
   },
 ];
 
 const projects = [
+  {
+    title: 'Agentic AI Trading Platform',
+    image: '/trading-icon.svg',
+    alt: 'Trading platform icon',
+    imageClass: 'h-24 w-24',
+    summary:
+      'Developed a 17-agent investment research system spanning fundamental, technical, macro, risk, and portfolio workflows to evaluate cross-market opportunities and generate trade recommendations.',
+    meta: 'OpenClaw, Multi-Agent Systems, Python, Flask • May 2026 – Present',
+    links: [{ label: 'GitHub', href: 'https://github.com/apandya255' }],
+  },
+  {
+    title: 'Spotify User Data Pipeline',
+    image: '/spotify-logo.png',
+    alt: 'Spotify logo',
+    imageClass: 'h-16 w-auto',
+    summary:
+      'Built an end-to-end data science pipeline across Spotify\'s top 100 artists, engineering trend-rate and listener-gap features and training a sequential neural network that achieved 93.7% test accuracy in identifying artists with high growth potential.',
+    meta: 'Python, NumPy, Matplotlib, Scikit-learn, TensorFlow • Mar – May 2026',
+    links: [{ label: 'GitHub', href: 'https://github.com/apandya255' }],
+  },
+  {
+    title: 'AI in Higher Education',
+    image: '/research-synthesis-icon.svg',
+    alt: 'Research synthesis icon',
+    imageClass: 'h-24 w-24',
+    summary:
+      'Contributed to a systematic research synthesis on generative AI in higher education, helping narrow 398 initial sources to 47 final studies and analyzing student learning outcomes across critical thinking, writing, and metacognition.',
+    meta: 'Research Synthesis, Python, Google Forms, Mendeley • Jan – May 2026',
+    links: [],
+  },
+  {
+    title: 'PandyaBot',
+    image: '/pandyabot-logo.png',
+    alt: 'Chatbox interface icon',
+    imageClass: 'h-32 w-full',
+    summary:
+      "Designed and shipped PandyaBot for this portfolio with a floating chat UI, portfolio-aware prompting, and a secure server API route for AI responses.",
+    meta: 'Next.js, TypeScript, OpenAI API, UX Engineering • 2026',
+    links: [{ label: 'GitHub', href: 'https://github.com/apandya255/portfolio' }],
+  },
   {
     title: 'Python Instruction Curriculum',
     image: '/lotc_image.png',
@@ -53,7 +99,7 @@ const projects = [
     imageClass: 'h-20 w-auto',
     summary:
       'Built and delivered a Python curriculum across six sessions through a public library partnership, helping over 50 students progress into advanced CS coursework.',
-    meta: 'Python, Curriculum Design, Instruction • Feb 2022 - Jun 2023',
+    meta: 'Python, Curriculum Design, Instruction • Feb 2022 – Jun 2023',
     links: [{ label: 'Partner', href: 'https://chathamlibrary.org/' }],
   },
   {
@@ -63,7 +109,7 @@ const projects = [
     imageClass: 'h-32 w-full',
     summary:
       'Led development of a forensic analysis web application later acquired by Data Unlimited International, with 100+ samples processed via internal comparison workflows.',
-    meta: 'Web Engineering, Data Processing • Jun 2021 - Aug 2021',
+    meta: 'Web Engineering, Data Processing • Jun 2021 – Aug 2021',
     links: [
       {
         label: 'Company',
@@ -71,33 +117,12 @@ const projects = [
       },
     ],
   },
-  {
-    title: 'PandyaBot',
-    image: '/pandyabot-logo.png',
-    alt: 'Chatbox interface icon',
-    imageClass: 'h-32 w-full',
-    summary:
-      "Designed and shipped PandyaBot for this portfolio with a floating chat UI, portfolio-aware prompting, and a secure server API route for OpenAI responses.",
-    meta: 'Next.js, TypeScript, OpenAI API, UX Engineering • 2026',
-    links: [{ label: 'GitHub', href: 'https://github.com/apandya255/portfolio' }],
-  },
-  // {
-  //   title: 'Market Analyzer',
-  //   image: '/globe.svg',
-  //   alt: 'Market analyzer icon',
-  //   imageClass: 'h-20 w-20',
-  //   summary:
-  //     'Built a trend-focused market analyzer that ranks investment candidates with a factor model and AI-generated market commentary from user inputs.',
-  //   meta: 'Next.js, TypeScript, Factor Scoring, AI Analysis • 2026',
-  //   links: [{ label: 'Open App', href: '/market-analyzer' }],
-  // },
 ];
 
 const skillGroups = [
-  { label: 'Languages', items: ['Python', 'Java', 'TypeScript', 'SQL', 'OCaml', 'Rust', 'R', 'C'] },
-  { label: 'Frameworks & Libraries', items: ['React', 'Angular', 'Next.js'] },
-  { label: 'Testing & Data', items: ['Selenium', 'Splunk (SPL)', 'JUnit'] },
-  { label: 'Tools & Workflow', items: ['Git', 'GitHub', 'Eclipse', 'Jira', 'Toad for Oracle', 'Agile / Scrum'] },
+  { label: 'Languages', items: ['Java', 'Python', 'C++', 'C', 'SQL', 'JavaScript', 'Bash', 'R', 'HTML', 'CSS'] },
+  { label: 'Frameworks & Libraries', items: ['Spring Boot', 'Angular', 'TensorFlow', 'Scikit-learn', 'Pandas', 'PostgreSQL', 'NumPy', 'Matplotlib'] },
+  { label: 'Developer Tools', items: ['Git', 'GitHub', 'Jenkins', 'Maven', 'DBeaver', 'SonarQube', 'Jira', 'IntelliJ IDEA', 'VS Code', 'Kiro', 'Amazon Bedrock'] },
 ];
 
 const buttonClass =
@@ -173,7 +198,7 @@ export default function Home() {
               </h1>
 
               <p className="mt-4 max-w-2xl text-base leading-8 text-slate-600 lg:text-lg">
-                Two-time DTCC intern building production software for capital markets infrastructure, with experience across frontend delivery, automation, and data-driven engineering.
+                Three-time DTCC intern building production software for capital markets infrastructure, with experience across security remediation, AI retrieval pipelines, frontend delivery, and data-driven automation.
               </p>
 
               <p className="mt-5 text-sm font-medium tracking-[0.08em] text-slate-500 uppercase">
@@ -258,11 +283,16 @@ export default function Home() {
                   )}
                 </p>
                 <p className="mt-1 text-sm text-slate-500">{item.meta}</p>
-                <ul className="mt-4 list-disc space-y-2 pl-5 text-sm leading-relaxed text-slate-700">
-                  {item.bullets.map((bullet) => (
-                    <li key={bullet}>{bullet}</li>
-                  ))}
-                </ul>
+                {item.sections.map((section) => (
+                  <div key={section.heading} className="mt-4">
+                    <p className="text-sm font-semibold text-slate-800">{section.heading}</p>
+                    <ul className="mt-2 list-disc space-y-2 pl-5 text-sm leading-relaxed text-slate-700">
+                      {section.bullets.map((bullet) => (
+                        <li key={bullet}>{bullet}</li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
               </article>
             ))}
           </div>
