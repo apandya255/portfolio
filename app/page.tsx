@@ -49,6 +49,21 @@ const experience = [
       },
     ],
   },
+  {
+    role: 'Spring Research Intern',
+    org: 'OpenData',
+    meta: 'Remote, New Jersey | February 2024 – June 2024',
+    sections: [
+      {
+        heading: '',
+        bullets: [
+          'Evaluated free and commercial data sources for an AI-driven data marketplace platform to inform integration strategy.',
+          'Explored machine learning approaches for automated data quality assessment using metadata coverage, freshness, and uniqueness signals.',
+          'Analyzed 10+ data marketplaces across pricing models, product capabilities, and AI features to prioritize roadmap direction.',
+        ],
+      },
+    ],
+  },
 ];
 
 const projects = [
@@ -284,8 +299,8 @@ export default function Home() {
                 </p>
                 <p className="mt-1 text-sm text-slate-500">{item.meta}</p>
                 {item.sections.map((section) => (
-                  <div key={section.heading} className="mt-4">
-                    <p className="text-sm font-semibold text-slate-800">{section.heading}</p>
+                  <div key={section.heading || 'main'} className="mt-4">
+                    {section.heading && <p className="text-sm font-semibold text-slate-800">{section.heading}</p>}
                     <ul className="mt-2 list-disc space-y-2 pl-5 text-sm leading-relaxed text-slate-700">
                       {section.bullets.map((bullet) => (
                         <li key={bullet}>{bullet}</li>
